@@ -47,3 +47,73 @@ table {
 }
 
 /* //////////////////////////////////////////////////////// */
+
+body {
+	color: white;
+	display: flex;
+	justify-content: center;
+}
+#header {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 32px;
+}
+
+#container,
+#header,
+#display,
+form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+form {
+	align-items: end;
+}
+
+textarea {
+	resize: none;
+}
+
+input {
+	overflow-wrap: break-word;
+	max-height: fit-content;
+}
+
+.btns {
+	align-self: center;	
+}
+
+.status,
+.priority,
+ul {
+	display: flex;
+}
+
+.due,
+.status,
+ul {
+	align-self: center;	
+}
+
+.due {
+	margin-left: -18px;
+}
+
+.status {
+	margin-left: 56px;
+}
+
+.priority {
+	margin-right: -2px;
+}
+
+.descr,
+.notes {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}

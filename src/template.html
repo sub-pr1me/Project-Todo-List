@@ -6,6 +6,81 @@
     <title>Todo List</title>
 </head>
 <body>
-    
+    <div id="container">
+        <div id="header">TO-DO LIST</div>
+        <div id="display">
+            <button id="addProjectBtn" class="btn">Add Project</button>
+            <button id="addTaskBtn" class="btn">Add Task</button>
+        </div>
+
+        <dialog id="proj_dialog" class="modal">
+            <form class="proj_form">
+                <div class="section">
+                    <label for="p_name">New project name:</label>
+                    <input type="text" id="p_name" name="p_name" required>
+                </div>
+                <div class="section btns">
+                    <button type="button" class="btn cancel_proj">CANCEL</button>
+                    <button class="btn submit_proj">SUBMIT</button>
+                </div>
+            </form>
+        </dialog>
+
+        <dialog id="task_dialog" class="modal">
+            <form class="task_form">
+                <div class="section">
+                    <label for="t_name">New task name:</label>
+                    <input type="text" id="t_name" name="t_name" required>
+                </div>
+                <div class="section status">
+                    <div>Status:</div>
+                    <ul style="list-style: none;">
+                        <li>
+                            <input type="radio" id="incomplete" name="status" value="Incomplete" checked="checked" required>
+                            <label for="incomplete">Incomplete</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="complete" name="status" value="Complete" required>
+                            <label for="complete">Complete</label>
+                        </li>
+                    </ul>   
+                </div>
+                <div class="section descr">
+                    <label for="description">Description:</label>
+                    <textarea name="description" id="description" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+                </div>
+                <div class="section due">
+                    <label for="due_date">Due date:</label>
+                    <input type="date" name="due_date" id="due_date">
+                </div>
+                <div class="section priority">
+                    <div>Priority:</div>
+                    <ul style="list-style: none;">
+                        <li>
+                            <input type="radio" id="low" name="priority" value="Low" required>
+                            <label for="low">Low</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="medium" name="priority" value="Medium" required>
+                            <label for="medium">Medium</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="high" name="priority" value="High" required>
+                            <label for="high">High</label>
+                        </li>
+                    </ul>   
+                </div>
+                <div class="section notes">
+                    <label for="notes">Notes:</label>
+                    <textarea name="notes" id="notes" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+                </div>
+                <div class="section btns">
+                    <button type="button" class="btn cancel_task">CANCEL</button>
+                    <button class="btn submit_task">SUBMIT</button>
+                </div>
+            </form>
+        </dialog>
+
+    </div>    
 </body>
 </html>
