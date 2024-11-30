@@ -46,74 +46,248 @@ table {
 	border-spacing: 0;
 }
 
-/* //////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////// */
 
-body {
-	color: white;
-	display: flex;
-	justify-content: center;
-}
-#header {
-	margin-top: 20px;
-	margin-bottom: 20px;
-	font-size: 32px;
+@font-face {
+    font-family: tektur;
+    src: url(./fonts/tektur-variablefont_wdthwght-webfont.woff2);
 }
 
-#container,
-#header,
-#display,
-form {
+* {
+	/* outline: 1px solid red; */
+}
+
+#table {
+
+}
+
+.text,
+button,
+textarea {
+	font-family: tektur;	
+}
+
+.text {
+	font-size: 18px;
+	margin-right: 2px;
+	margin-left: 2px;
+	color: rgb(125, 224, 133);
+}
+
+button {
+	width: fit-content;
+	font-size: 14px;
+	margin: 2px 0px;
+	color: rgb(125, 224, 133);
+	background-color: rgb(51, 51, 51);
+	border: 2px solid rgb(125, 224, 133);
+}
+
+.bigger {
+	font-size: 20px;
+}
+
+.smaller {
+	font-size: 16px;
+	margin-bottom: -2px;
+	color: rgb(255, 237, 134);
+}
+
+.bold {
+	font-weight: 900;
+}
+
+.row,
+.column,
+.center,
+.left,
+li,
+#table {
 	display: flex;
+}
+.radio {
+	margin: 0px 2px;
+	align-items: center;
+}
+
+.row {
+	margin: 8px 0px;
+}
+
+.column {
 	flex-direction: column;
+}
+
+.column.left {
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.column.center {
 	justify-content: center;
 	align-items: center;
-	gap: 20px;
 }
 
-form {
-	align-items: end;
+.row.left {
+	justify-content: flex-start;
+	align-items: center;
 }
 
-textarea {
-	resize: none;
+.row.center {
+	justify-content: center;
+	align-items: center;
 }
 
-input {
-	overflow-wrap: break-word;
-	max-height: fit-content;
+.pTitle {
+	color: rgb(125, 224, 133);
+	overflow-wrap: anywhere;
 }
 
-.btns {
-	align-self: center;	
+.wrap {
+	flex-wrap: wrap;
+	gap: 0px 5px;
+	margin-bottom: -3px;
 }
 
-.status,
-.priority,
-ul {
-	display: flex;
+.wrap > button {
+	border: 1px solid rgb(125, 224, 133);
 }
 
-.due,
-.status,
-ul {
-	align-self: center;	
+li {
+	justify-content: center;
+	align-items: center;
+}
+
+#header {
+	padding: 20px;
+	font-size: 36px;
+}
+
+.project {
+	margin: 10px;
+}
+
+.pHeader {
+	padding: 5px;
+	color: rgb(51, 51, 51);
+	background-color: rgb(125, 224, 133);
+	width: fit-content;
+	margin: 0px;
+}
+
+.pBody {
+	padding: 8px;
+	border: 2px solid rgb(125, 224, 133);
+	width: 320px;
+}
+
+.pStatus {
+	margin-top: 0px;
+	margin-bottom: 20px;
+	height: 24px;
 }
 
 .due {
-	margin-left: -18px;
+	margin-bottom: 0px;
 }
 
-.status {
-	margin-left: 56px;
+.Low,
+.Medium,
+.High {
+	padding: 5px;
 }
 
-.priority {
-	margin-right: -2px;
+#p_dialog,
+#t_dialog {
+	border: 2px solid rgb(125, 224, 133);
+	background-color: rgb(51, 51, 51);
+	padding: 0px 8px;
 }
 
-.descr,
-.notes {
+input,
+textarea {
+	background-color: rgb(80, 80, 80);
+	accent-color: rgb(125, 224, 133);
+	color: rgb(220, 255, 223);
+	outline: none !important;
+	border: none;
+}
+
+textarea {
+	font-style: italic;
+	min-width: 100%;
+	margin-top: 3px;
+	color: rgb(255, 237, 134);;
+}
+
+::placeholder {
+	color: rgb(220, 255, 223);
+	box-shadow: none !important;
+}
+
+input:focus,
+textarea:focus {
+	outline: none !important;
+	border: none;
+}
+
+.gap5 {
+	gap: 5px;
+}
+
+#addProjectBtn {
+	border: 1px solid rgb(125, 224, 133);
+	font-size: 24px;
+}
+
+.checklist {
+	font-size: 14px;
+	align-self: center;
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
-	gap: 6px;
+	margin: 0px 2px;
+
 }
+
+#addProjectBtn:hover {
+	color: rgb(255, 237, 134);
+	border: 1px solid rgb(255, 237, 134);
+}
+
+.btn.add:hover {
+	color: rgb(255, 237, 134);
+	border: 1px solid rgb(255, 237, 134);
+}
+
+.btn.compl:hover {
+	color: rgb(255, 237, 134);
+	border: 1px solid rgb(255, 237, 134);
+}
+
+.btn.del:hover {
+	color: rgb(255, 134, 134);
+	border: 1px solid rgb(255, 134, 134);
+}
+
+.highlight {
+	color: rgb(51, 51, 51);
+	background-color: rgb(255, 237, 134);
+	padding: 5px;
+}
+
+::backdrop {
+	background-color: black;
+	opacity: 85%;
+}
+
+.space_between {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+.text.bold.center {
+	margin-top: 10px;
+};

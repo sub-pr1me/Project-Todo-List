@@ -1,86 +1,68 @@
 <!DOCTYPE html>
-<html lang="en" style="background-color: #666666">
+<html lang="en" style="background-color: rgb(51, 51, 51); color: white">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List</title>
+    <title>TO-DO LIST</title>
 </head>
 <body>
-    <div id="container">
-        <div id="header">TO-DO LIST</div>
-        <div id="display">
-            <button id="addProjectBtn" class="btn">Add Project</button>
-            <button id="addTaskBtn" class="btn">Add Task</button>
+    <div id="container" class="column center">
+        <div id="header" class="text">TO-DO LIST</div>
+        <div id="display" class="column center">
+            <button id="addProjectBtn" class="btn">Add New Project</button>
+            <div id="table" class="row center wrap"></div>
         </div>
-
-        <dialog id="proj_dialog" class="modal">
-            <form class="proj_form">
-                <div class="section">
-                    <label for="p_name">New project name:</label>
-                    <input type="text" id="p_name" name="p_name" required>
+        <dialog id="p_dialog" class="modal">
+            <form class="p_form">
+                <div class="row left gap">                    
+                    <input type="text" id="p_title" name="p_title" autocomplete="off" placeholder="New project title" class="row text"required>
                 </div>
-                <div class="section btns">
-                    <button type="button" class="btn cancel_proj">CANCEL</button>
-                    <button class="btn submit_proj">SUBMIT</button>
+                <div class="row left gap">
+                    <label for="p_due" class="text">Due date:</label>
+                    <input type="date" name="p_due" id="p_due" required>
                 </div>
-            </form>
-        </dialog>
-
-        <dialog id="task_dialog" class="modal">
-            <form class="task_form">
-                <div class="section">
-                    <label for="t_name">New task name:</label>
-                    <input type="text" id="t_name" name="t_name" required>
-                </div>
-                <div class="section status">
-                    <div>Status:</div>
-                    <ul style="list-style: none;">
+                <div class="row left gap">
+                    <div class="text">Priority:</div>
+                    <ul style="list-style: none;" class="row center">
                         <li>
-                            <input type="radio" id="incomplete" name="status" value="Incomplete" checked="checked" required>
-                            <label for="incomplete">Incomplete</label>
+                            <input type="radio" id="low" name="p_priority" value="Low" class="radio" required>
+                            <label for="low"class="text">Low</label>
                         </li>
                         <li>
-                            <input type="radio" id="complete" name="status" value="Complete" required>
-                            <label for="complete">Complete</label>
+                            <input type="radio" id="medium" name="p_priority" value="Medium" class="radio" required>
+                            <label for="medium"class="text">Medium</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="high" name="p_priority" value="High" class="radio" required>
+                            <label for="high"class="text">High</label>
                         </li>
                     </ul>   
                 </div>
-                <div class="section descr">
-                    <label for="description">Description:</label>
-                    <textarea name="description" id="description" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+                <div class="column left gap">
+                    <label for="p_descr"class="text">Description:</label>
+                    <textarea name="p_descr" id="p_descr" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
                 </div>
-                <div class="section due">
-                    <label for="due_date">Due date:</label>
-                    <input type="date" name="due_date" id="due_date">
-                </div>
-                <div class="section priority">
-                    <div>Priority:</div>
-                    <ul style="list-style: none;">
-                        <li>
-                            <input type="radio" id="low" name="priority" value="Low" required>
-                            <label for="low">Low</label>
-                        </li>
-                        <li>
-                            <input type="radio" id="medium" name="priority" value="Medium" required>
-                            <label for="medium">Medium</label>
-                        </li>
-                        <li>
-                            <input type="radio" id="high" name="priority" value="High" required>
-                            <label for="high">High</label>
-                        </li>
-                    </ul>   
-                </div>
-                <div class="section notes">
-                    <label for="notes">Notes:</label>
-                    <textarea name="notes" id="notes" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
-                </div>
-                <div class="section btns">
-                    <button type="button" class="btn cancel_task">CANCEL</button>
-                    <button class="btn submit_task">SUBMIT</button>
+                <div class="row center gap5">
+                    <button type="button" class="p_cancel">CANCEL</button>
+                    <button class="p_submit">SUBMIT</button>
                 </div>
             </form>
         </dialog>
-
-    </div>    
+        <dialog id="t_dialog" class="modal">
+            <form class="t_form">
+                <div class="row left gap">                    
+                    <input type="text" id="t_title" name="t_title" autocomplete="off" placeholder="New task title" class="row text"required>
+                </div>
+                <div class="row left gap">
+                    <label for="p_due" class="text">Due date:</label>
+                    <input type="date" name="t_due" id="t_due" required>
+                </div>
+                <div class="row center gap5">
+                    <button type="button" class="t_cancel">CANCEL</button>
+                    <button class="t_submit">SUBMIT</button>
+                </div>
+            </form>
+        </dialog>
+    </div>
 </body>
 </html>

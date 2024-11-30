@@ -1,21 +1,24 @@
-import { app } from "./mainFunctions.js";
+import { func } from "./mainFunctions.js";
 import { dom } from "./DOM.js";
+import { display } from "./displayController.js";
 
 const events = () => {
-    dom.pAdd.addEventListener('click', () => {
-        app.showDialog(dom.pDialog, dom.pForm);
+
+    dom.addProjectBtn.addEventListener('click', () => {
+        dom.pForm.reset();
+        dom.pDialog.showModal();
     });
-    
+
     dom.pCancel.addEventListener('click', () => {
-        app.closeDialog(dom.pDialog);
+        dom.pDialog.close();
     });
-    
+
     dom.pSubmit.addEventListener('click', (e) => {
         e.stopImmediatePropagation();
         e.preventDefault();
-        app.addProject(app.formSubmission(dom.pForm));
-        app.closeDialog(dom.pDialog);
-        console.log(app.getList());
+        func.addProject(func.getProjectFormData(dom.pForm));
+        dom.pDialog.close();
+        display();
     });
 };
 
