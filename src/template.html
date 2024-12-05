@@ -13,27 +13,27 @@
             <div id="table" class="row center wrap"></div>
         </div>
         <dialog id="p_dialog" class="modal">
-            <form class="p_form">
+            <form id="p_form">
                 <div class="row left gap">                    
-                    <input type="text" id="p_title" name="p_title" autocomplete="off" placeholder="New project title" class="row text"required>
+                    <input type="text" id="p_title" name="p_title" autocomplete="off" placeholder="New project title" class="row text" required />
                 </div>
                 <div class="row left gap">
                     <label for="p_due" class="text">Due date:</label>
-                    <input type="date" name="p_due" id="p_due" required>
+                    <input type="date" name="p_due" id="p_due" required />
                 </div>
                 <div class="row left gap">
                     <div class="text">Priority:</div>
                     <ul style="list-style: none;" class="row center">
                         <li>
-                            <input type="radio" id="low" name="p_priority" value="Low" class="radio" required>
+                            <input type="radio" id="low" name="p_priority" value="Low" class="radio" required />
                             <label for="low"class="text">Low</label>
                         </li>
                         <li>
-                            <input type="radio" id="medium" name="p_priority" value="Medium" class="radio" required>
+                            <input type="radio" id="medium" name="p_priority" value="Medium" class="radio" required />
                             <label for="medium"class="text">Medium</label>
                         </li>
                         <li>
-                            <input type="radio" id="high" name="p_priority" value="High" class="radio" required>
+                            <input type="radio" id="high" name="p_priority" value="High" class="radio" required />
                             <label for="high"class="text">High</label>
                         </li>
                     </ul>   
@@ -44,22 +44,22 @@
                 </div>
                 <div class="row center gap5">
                     <button type="button" class="p_cancel">CANCEL</button>
-                    <button class="p_submit">SUBMIT</button>
+                    <button type="submit" data-dismiss="modal" class="p_submit">SUBMIT</button>
                 </div>
             </form>
         </dialog>
         <dialog id="t_dialog" class="modal">
-            <form class="t_form">
+            <form id="t_form">
                 <div class="row left gap">                    
-                    <input type="text" id="t_title" name="t_title" autocomplete="off" placeholder="New task title" class="row text"required>
+                    <input type="text" id="t_title" name="t_title" autocomplete="off" placeholder="New task title" class="row text" required />
                 </div>
                 <div class="row left gap">
                     <label for="p_due" class="text">Due date:</label>
-                    <input type="date" name="t_due" id="t_due" required>
+                    <input type="date" name="t_due" id="t_due" required />
                 </div>
                 <div class="row center gap5">
                     <button type="button" class="t_cancel">CANCEL</button>
-                    <button class="t_submit">SUBMIT</button>
+                    <button type="submit" data-dismiss="modal" class="t_submit">SUBMIT</button>
                 </div>
             </form>
         </dialog>

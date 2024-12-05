@@ -7,18 +7,16 @@ const dom = (function () {
 
     const addProjectBtn = document.getElementById('addProjectBtn');
     const pDialog = document.getElementById('p_dialog');
-    const pForm = document.querySelector('.p_form');
+    const pForm = document.getElementById('p_form');
     const pCancel = document.querySelector('.p_cancel');
     const pSubmit = document.querySelector('.p_submit');
     const tDialog = document.getElementById('t_dialog');
-    const tForm = document.querySelector('.t_form');
+    const tForm = document.getElementById('t_form');
     const tCancel = document.querySelector('.t_cancel');
-    const tSubmit = document.querySelector('.t_submit');
-
     const table = document.getElementById('table');
 
     const newProjectWindow = (parent, projectIndex, title, 
-        due, priority, status, description, checklist) => {
+        due, priority, status, description, checklist, collapsed) => {
         const pContainer = document.createElement('div');
         const pHeader = document.createElement('div');
         const pBody = document.createElement('div');
@@ -26,12 +24,13 @@ const dom = (function () {
         const pDue = document.createElement('div');
         const pDueLabel = document.createElement('div');
         const pDueDate = document.createElement('div');
+        const pToggle = document.createElement('div');
         const pPriority = document.createElement('div');
         const pPriorityLabel = document.createElement('div');
         const pPriorityLevels = document.createElement('div');
-        const Low = document.createElement('div');
-        const Medium = document.createElement('div');
-        const High = document.createElement('div');
+        const Low = document.createElement('button');
+        const Medium = document.createElement('button');
+        const High = document.createElement('button');
         const pStatus = document.createElement('div');
         const pStatusLabel = document.createElement('div');
         const pStatusValue = document.createElement('div');
@@ -52,30 +51,33 @@ const dom = (function () {
         pDue.classList.add('row', 'left', 'due');
         pDueLabel.classList.add('text', 'bold');
         pDueDate.classList.add('text', 'smaller');
-        pPriority.classList.add('row', 'left', 'priority');
+        pToggle.classList.add('text', 'smaller', 'pToggle');
+        pPriority.classList.add('row', 'left', 'priority', 'collapsible');
         pPriorityLabel.classList.add('text', 'bold');
         pPriorityLevels.classList.add('row');
-        Low.classList.add('text', 'smaller', 'Low');
-        Medium.classList.add('text', 'smaller', 'Medium');
-        High.classList.add('text', 'smaller', 'High');
-        pStatus.classList.add('row', 'left', 'pStatus');
+        Low.classList.add('text', 'smaller', 'Low', 'pri');
+        Medium.classList.add('text', 'smaller', 'Medium', 'pri');
+        High.classList.add('text', 'smaller', 'High', 'pri');
+        pStatus.classList.add('row', 'left', 'pStatus', 'collapsible');
         pStatusLabel.classList.add('text', 'bold');
         pStatusValue.classList.add('text', 'smaller', 'status');
-        pDescription.classList.add('column', 'left');
+        pDescription.classList.add('column', 'left', 'collapsible');
         pDescriptionLabel.classList.add('text', 'bold');
         pDescriptionField.classList.add('border', 'italic');
         pDescriptionField.setAttribute('oninput', 'this.style.height = "";this.style.height = this.scrollHeight + "px"');
         pDescriptionField.setAttribute('name', 'description');
-        pChecklist.classList.add('column', 'center');
+        pChecklist.classList.add('column', 'center', 'collapsible');
         pChecklistLabel.classList.add('text', 'bold', 'center');
-        pBtns.classList.add('row', 'center', 'wrap');
+        pBtns.classList.add('row', 'center', 'wrap', 'collapsible');
         pAddTask.classList.add('btn', 'add');
         pCompleteProject.classList.add('btn', 'compl');
         pDeleteProject.classList.add('btn', 'del');
+
         pHeader.textContent = 'Project';
         pTitle.textContent = `- ${title} -`;
         pDueLabel.textContent = 'Due:';
         pDueDate.textContent = `${due}`;
+        pToggle.textContent = 'Collapse';
         pPriorityLabel.textContent = 'Priority:';
         Low.textContent = 'Low';
         Medium.textContent = 'Medium';
@@ -83,9 +85,9 @@ const dom = (function () {
         pStatusLabel.textContent = 'Status:';
         pStatusValue.textContent = `${status}`;
         pDescriptionLabel.textContent = 'Description:';
-        pDescriptionField.textContent = `${description}`;
+        pDescriptionField.textContent = `${description}`;        
         pAddTask.textContent = 'Add task';
-        pCompleteProject.textContent = 'Complete Project';
+        pCompleteProject.textContent = 'Finish Project';
         pDeleteProject.textContent = 'Delete Project';
 
         parent.appendChild(pContainer);
@@ -100,6 +102,7 @@ const dom = (function () {
         pBody.appendChild(pBtns);
         pDue.appendChild(pDueLabel);
         pDue.appendChild(pDueDate);
+        pDue.appendChild(pToggle);
         pPriority.appendChild(pPriorityLabel);
         pPriority.appendChild(pPriorityLevels);
         pPriorityLevels.appendChild(Low);
@@ -155,6 +158,34 @@ const dom = (function () {
         };
         setPriority(priority);        
 
+        function togglePriority() {
+            const priorityBtns = document.querySelectorAll('.pri');
+            priorityBtns.forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('highlight') && e.target.textContent === 'Low') {
+                        func.list[projectIndex].p_priority = 'Low';
+                        e.target.classList.add('highlight');
+                        e.target.nextSibling.classList.remove('highlight');
+                        e.target.nextSibling.nextSibling.classList.remove('highlight');
+                        display();
+                    } else if (!e.target.classList.contains('highlight') && e.target.textContent === 'Medium') {
+                        func.list[projectIndex].p_priority = 'Medium';
+                        e.target.classList.add('highlight');
+                        e.target.previousSibling.classList.remove('highlight');
+                        e.target.nextSibling.classList.remove('highlight');
+                        display();
+                    } else if (!e.target.classList.contains('highlight') && e.target.textContent === 'High') {
+                        func.list[projectIndex].p_priority = 'High';
+                        e.target.classList.add('highlight');
+                        e.target.previousSibling.classList.remove('highlight');
+                        e.target.previousSibling.previousSibling.classList.remove('highlight');
+                        display();
+                    };
+                });
+            });
+        };
+        togglePriority();
+        
         function setStatus(element) {
             if (element.textContent === 'Complete') {
                 pStatusValue.classList.add('highlight');
@@ -162,6 +193,53 @@ const dom = (function () {
             };
         };
         setStatus(pStatusValue);
+
+        function toggleCollapse() {
+            function toggle(element) {
+                element.parentNode.nextSibling.classList.toggle('collapsed');
+                element.parentNode.nextSibling.nextSibling.classList.toggle('collapsed');
+                element.parentNode.nextSibling.nextSibling.nextSibling.classList.toggle('collapsed');
+                element.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.classList.toggle('collapsed');
+                element.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.classList.toggle('collapsed');
+            };
+
+            if (func.list[projectIndex].p_collapsed == 0) {
+                pToggle.addEventListener('click', (e) => {
+                    if (func.list[projectIndex].p_collapsed == 0) {
+                        func.list[projectIndex].p_collapsed = 1;
+                        e.target.textContent = 'Expand';
+                        toggle(e.target);
+                        display();
+                    } else if (func.list[projectIndex].p_collapsed == 1) {
+                        func.list[projectIndex].p_collapsed = 0;
+                        e.target.textContent = 'Collapse';
+                        toggle(e.target);
+                        display();
+                    };
+                });
+            } else if (func.list[projectIndex].p_collapsed == 1) {
+                    pToggle.textContent = 'Expand';
+                    toggle(pToggle);                    
+                    pToggle.addEventListener('click', (e) => {
+                    if (func.list[projectIndex].p_collapsed == 0) {
+                        func.list[projectIndex].p_collapsed = 1;
+                        e.target.textContent = 'Expand';
+                        toggle(e.target);
+                        display();
+                    } else if (func.list[projectIndex].p_collapsed == 1) {
+                        func.list[projectIndex].p_collapsed = 0;
+                        e.target.textContent = 'Collapse';
+                        toggle(e.target);
+                        display();
+                    };
+                });
+            };
+        };
+        toggleCollapse();
+
+        pDescriptionField.addEventListener('input', () => {
+            func.list[projectIndex].p_descr = pDescriptionField.value;
+        });
 
         pCompleteProject.addEventListener('click', (e) => {
             e.stopImmediatePropagation();
@@ -174,10 +252,10 @@ const dom = (function () {
             display();
         });
 
-        pDeleteProject.addEventListener('click', (e) => {
-            e.stopImmediatePropagation();
+        pDeleteProject.addEventListener('click', () => {
             func.removeProject(projectIndex);
             parent.removeChild(pContainer);
+            localStorage.removeItem(`appData${projectIndex}`);         
             display();
         });
 
@@ -191,15 +269,15 @@ const dom = (function () {
                 
                 tDialog.close();
             });
-        });        
+        });
     };
 
-    tSubmit.addEventListener('click', (e) => {
+    tForm.addEventListener('submit', (e) => {
         e.preventDefault();
         func.addTask(index, func.getTaskFormData(tForm));
         tDialog.close();
         display();
-    });            
+    });
 
 return { addProjectBtn, pDialog, pForm, pCancel, pSubmit, tDialog, 
         tForm, table, newProjectWindow }

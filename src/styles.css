@@ -135,12 +135,14 @@ li,
 
 .row.center {
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 }
 
-.pTitle {
+.pTitle,
+.cloneTitle {
 	color: rgb(125, 224, 133);
 	overflow-wrap: anywhere;
+	cursor: pointer;
 }
 
 .wrap {
@@ -217,7 +219,7 @@ textarea {
 	font-style: italic;
 	min-width: 100%;
 	margin-top: 3px;
-	color: rgb(255, 237, 134);;
+	color: rgb(255, 237, 134);
 }
 
 ::placeholder {
@@ -238,6 +240,7 @@ textarea:focus {
 #addProjectBtn {
 	border: 1px solid rgb(125, 224, 133);
 	font-size: 24px;
+	margin: 20px;
 }
 
 .checklist {
@@ -290,4 +293,33 @@ textarea:focus {
 
 .text.bold.center {
 	margin-top: 10px;
-};
+}
+
+button.pri {
+	border: none;
+	cursor: pointer;
+}
+
+.collapsed {
+	display: none;
+}
+
+.pToggle {
+	margin-left: 107px;
+	padding: 4px;
+	color: rgb(125, 224, 133);
+	border: 1px solid rgb(125, 224, 133);
+	cursor: pointer;
+	margin-bottom: 2px;
+}
+
+.pToggle:hover {
+	margin-left: 107px;
+	padding: 4px;
+	color: rgb(255, 237, 134);
+	border: 1px solid rgb(255, 237, 134);
+}
+
+#p_due {
+	color-scheme: dark;
+}
