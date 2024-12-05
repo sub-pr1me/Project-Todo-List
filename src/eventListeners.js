@@ -13,7 +13,7 @@ const events = () => {
         dom.pDialog.close();
     });
 
-    dom.pSubmit.addEventListener('click', (e) => {
+    dom.pForm.addEventListener('submit', (e) => {
         e.stopImmediatePropagation();
         e.preventDefault();
         func.addProject(func.getProjectFormData(dom.pForm));
