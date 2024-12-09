@@ -320,6 +320,7 @@ button.pri {
 	border: 1px solid rgb(255, 237, 134);
 }
 
-#p_due {
+#p_due,
+#t_due {
 	color-scheme: dark;
 }
